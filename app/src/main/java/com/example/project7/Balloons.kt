@@ -10,6 +10,7 @@ class Balloons {
     private lateinit var handler : SAXHandler
 
     constructor() {
+        handler = SAXHandler()
         bloonsList = handler.getBalloons()
 
     }
