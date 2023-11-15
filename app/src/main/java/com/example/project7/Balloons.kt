@@ -5,18 +5,23 @@ import android.graphics.Paint
 import android.graphics.Canvas
 
 class Balloons {
-    private lateinit var bloon:Balloon
-    private lateinit var paint : Paint
+    private var bloonsList: ArrayList<Balloon> = ArrayList<Balloon>()
+    private lateinit var handler : SAXHandler
 
-    constructor(newBloon:Balloon){
-        bloon = newBloon
-        paint = Paint()
-        paint.color = Color.CYAN
-        paint.isAntiAlias = true
-        paint.strokeWidth = 20.0f
+    constructor() {
+        bloonsList = handler.getBalloons()
+
     }
 
     fun buildBloon(){
 
+    }
+
+    fun checkClicked (x : Float, y : Float) : Boolean {
+        return false
+    }
+
+    fun getList() : ArrayList<Balloon> {
+        return bloonsList
     }
 }

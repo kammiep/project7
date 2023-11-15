@@ -42,11 +42,7 @@ class SAXHandler : DefaultHandler() {
         }
     }
 
-    fun getAndLogItems( ) : ArrayList<Balloon> {
-        for (i in items) {
-            Log.w("MainActivity",
-                i.getX().toString() + "; " + i.getY().toString() + "; " + i.getRadius().toString())
-        }
+    fun getBalloons( ) : ArrayList<Balloon> {
         return items
     }
 }
