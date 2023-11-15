@@ -7,10 +7,9 @@ import kotlin.math.pow
 
 class Balloons {
     private var bloonsList: ArrayList<Balloon> = ArrayList<Balloon>()
-    private lateinit var handler : SAXHandler
+    private var handler : SAXHandler = SAXHandler()
 
     constructor() {
-        handler = SAXHandler()
         bloonsList = handler.getBalloons()
 
     }
