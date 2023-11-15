@@ -1,5 +1,6 @@
 package com.example.project7
 
+import android.util.Log
 import org.xml.sax.Attributes
 import org.xml.sax.helpers.DefaultHandler
 
@@ -41,7 +42,11 @@ class SAXHandler : DefaultHandler() {
         }
     }
 
-    fun getItems( ) : ArrayList<Balloon> {
+    fun getAndLogItems( ) : ArrayList<Balloon> {
+        for (i in items) {
+            Log.w("MainActivity",
+                i.getX().toString() + "; " + i.getY().toString() + "; " + i.getRadius().toString())
+        }
         return items
     }
 }
