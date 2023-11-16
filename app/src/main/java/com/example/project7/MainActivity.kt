@@ -42,11 +42,13 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
         gv.setOnTouchListener(this)
     }
 
+    /*
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         if( event != null )
             detector.onTouchEvent( event )
         return super.onTouchEvent(event)
     }
+     */
 
     override fun onTouch(v: View?, e: MotionEvent?): Boolean {
         if(e != null){
