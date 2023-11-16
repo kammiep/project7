@@ -5,11 +5,12 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Canvas
 import android.view.View
+import android.util.Log
 
 class GameView : View {
     private var bloons:ArrayList<Balloon> = ArrayList<Balloon>()
-    private lateinit var paint : Paint
-    private lateinit var context : Context
+    private var paint : Paint
+    private var context : Context
 
     constructor(context: Context, newBloons:ArrayList<Balloon>) : super(context) {
         bloons = newBloons
@@ -24,6 +25,7 @@ class GameView : View {
     override fun onDraw(canvas:Canvas){
         super.onDraw(canvas)
         for (bloon in bloons){
+            Log.w("bloons","Bloon  x : " + bloon.getX() + " bloon y : " + bloon.getY())
             canvas.drawCircle(bloon.getX().toFloat(),bloon.getY().toFloat(),bloon.getRadius().toFloat(),paint)
         }
     }

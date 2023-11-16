@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Canvas
 import kotlin.math.pow
+import android.util.Log
 
 class Balloons {
     private var bloonsList: ArrayList<Balloon> = ArrayList<Balloon>()
