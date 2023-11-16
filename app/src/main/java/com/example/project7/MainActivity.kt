@@ -51,10 +51,12 @@ class MainActivity : AppCompatActivity() {
         override fun onSingleTapConfirmed(e: MotionEvent):Boolean{
             if(e != null){
                 var clicked = balloons.checkClicked(e.x, e.y)
-                if(!(clicked.getX() == -1 && clicked.getY() == -1 && clicked.getRadius() == 0)){
+                if(!(clicked.getX() == -1f && clicked.getY() == -1f && clicked.getRadius() == 0f)){
                     balloonsList.remove(clicked)
+                    Log.w("MainActivity", "Redrawing gameview after clocked")
                     gv.postInvalidate()
                 }
+                Log.w("MainActivity", "Was not clicked, at x " + e.x.toString() + " at y " + e.y.toString())
             }
             return true
         }

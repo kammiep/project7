@@ -1,36 +1,36 @@
 package com.example.project7
 
 class Balloon {
-    private var x = 0
-    private var y = 0
-    private var radius = 0
-    constructor(newX:Int,newY:Int,newRadius:Int){
+    private var x = 0.0f
+    private var y = 0.0f
+    private var radius = 0.0f
+    constructor(newX:Float,newY:Float,newRadius:Float){
         setX(newX)
         setY(newY)
         setRadius(newRadius)
     }
 
-    fun setX(newX:Int){
+    fun setX(newX:Float){
         x = newX
     }
 
-    fun setY(newY:Int){
+    fun setY(newY:Float){
         y = newY
     }
 
-    fun setRadius(newRadius:Int){
+    fun setRadius(newRadius:Float){
         radius = newRadius
     }
 
-    fun getX():Int{
+    fun getX():Float{
         return x
     }
 
-    fun getY():Int{
+    fun getY():Float{
         return y
     }
 
-    fun getRadius():Int{
+    fun getRadius():Float{
         return radius
     }
 }

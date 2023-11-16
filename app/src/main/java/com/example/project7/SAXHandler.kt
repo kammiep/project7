@@ -16,7 +16,7 @@ class SAXHandler : DefaultHandler() {
         element = qName!!
         validText = true
         if( qName.equals( "balloon" ) )
-            currentItem = Balloon( 0, 0,0 )
+            currentItem = Balloon( 0.0f, 0.0f,0.0f )
     }
 
     override fun endElement(uri: String?, localName: String?, qName: String?) {
@@ -34,11 +34,11 @@ class SAXHandler : DefaultHandler() {
             // Log.w( "MainActivity", "text is " + text )
 
             if( currentItem != null && validText && element.equals( "x" ) )
-                currentItem!!.setX( text.toInt() )
+                currentItem!!.setX( text.toInt().toFloat() )
             else if( currentItem != null && validText && element.equals( "y" ) )
-                currentItem!!.setY( text.toInt() )
+                currentItem!!.setY( text.toInt().toFloat() )
             else if(currentItem != null && validText && element.equals( "radius" ))
-                currentItem!!.setRadius(text.toInt())
+                currentItem!!.setRadius(text.toInt().toFloat())
         }
     }
 
