@@ -11,10 +11,10 @@ import javax.xml.parsers.SAXParserFactory
 
 class MainActivity : AppCompatActivity() {
     lateinit var balloons : Balloons
+    lateinit var gv:GameView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         var factory : SAXParserFactory = SAXParserFactory.newInstance()
         var saxParser : SAXParser = factory.newSAXParser()
 
@@ -25,12 +25,11 @@ class MainActivity : AppCompatActivity() {
         saxParser.parse( iStream, handler )
 
         balloons = Balloons()
+        gv = GameView(this,balloons.getList())
         for (i in balloons.getList()) {
             Log.w("MainActivity",
                 i.getX().toString() + "; " + i.getY().toString() + "; " + i.getRadius().toString())
         }
-
-
     }
 
     inner class TouchHandler : GestureDetector.SimpleOnGestureListener() {
