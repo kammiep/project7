@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         balloonsList = handler.getBalloons()
         balloons = Balloons(this)
-        gv = GameView(balloonsList)
+        gv = GameView(this, balloonsList)
         for (i in balloonsList) {
             Log.w("MainActivity",
                 i.getX().toString() + "; " + i.getY().toString() + "; " + i.getRadius().toString())
