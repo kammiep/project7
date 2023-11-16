@@ -9,11 +9,13 @@ import java.io.InputStream
 import javax.xml.parsers.SAXParser
 import javax.xml.parsers.SAXParserFactory
 import android.view.View
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity(), View.OnTouchListener {
     var balloonsList : ArrayList<Balloon> = ArrayList<Balloon>()
     lateinit var balloons : Balloons
     lateinit var gv:GameView
+    lateinit var toast:Toast
     //lateinit var detector:GestureDetector
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +26,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
 
         var handler : SAXHandler = SAXHandler()
         var iStream : InputStream = resources.openRawResource( R.raw.balloons3 )
+
+        toast = Toast.makeText(this,"YOU WON",Toast.LENGTH_SHORT)
 
         //var th : TouchHandler = TouchHandler()
         //detector = GestureDetector(this, th)
@@ -55,6 +59,13 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
             var clicked = balloons.checkClicked(e.getRawX(), e.getRawY())
             if(!(clicked.getX() == -1f && clicked.getY() == -1f && clicked.getRadius() == 0f)){
                 balloonsList.remove(clicked)
+            }
+            if(balloonsList.size == 0){
+                gv.postInvalidate()
+                toast.show()
+            }else if(balloons.gameLost()){
+                finish()
+            }else{
                 gv.postInvalidate()
             }
         }

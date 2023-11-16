@@ -37,11 +37,17 @@ class Balloons {
         return deletedBalloon
     }
 
-    fun gameWon() : Boolean {
+    fun gameLost():Boolean{
+        var maxAttempts = (numBalloons + 3) * 2
+        Log.w("test","attempts: " + attempts + " max: " + maxAttempts)
+        return attempts > maxAttempts
+    }
+
+    /*fun gameWon() : Boolean {
         var maxAttempts = numBalloons + 3
         if (attempts <= maxAttempts && activity.balloonsList.isEmpty()){
             return true
         }
         return false
-    }
+    }*/
 }
