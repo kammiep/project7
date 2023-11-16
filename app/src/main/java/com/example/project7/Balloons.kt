@@ -23,10 +23,12 @@ class Balloons {
     fun checkClicked (x : Float, y : Float) : Balloon {
         Log.w("Ballons", "In checkClicked with x " + x.toString())
         attempts++
+        // subtract offset
+        var newY : Float = y - 158f
         for (b in bloonsList) {
             // find distance from center
             var d : Double = Math.sqrt((x - b.getX()).pow(2).toDouble() +
-                    (y - b.getY()).pow(2).toDouble())
+                    (newY - b.getY()).pow(2).toDouble())
             Log.w("Balloons", "distance for balloon with x " + b.getX().toString() + " is " + d.toString() + " with radius " + b.getRadius().toString())
             // check if distance is less than radius
             if (d < b.getRadius().toDouble()) {
