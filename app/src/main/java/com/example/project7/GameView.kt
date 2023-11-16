@@ -26,7 +26,7 @@ class GameView : View {
         super.onDraw(canvas)
         for (bloon in bloons){
             Log.w("bloons","Bloon  x : " + bloon.getX() + " bloon y : " + bloon.getY())
-            canvas.drawCircle(bloon.getX().toFloat(),bloon.getY().toFloat(),bloon.getRadius().toFloat(),paint)
+            canvas.drawCircle(bloon.getX(),bloon.getY(),bloon.getRadius(),paint)
         }
     }
 }

@@ -10,14 +10,14 @@ import javax.xml.parsers.SAXParser
 import javax.xml.parsers.SAXParserFactory
 import android.view.View
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnTouchListener {
     var balloonsList : ArrayList<Balloon> = ArrayList<Balloon>()
     lateinit var balloons : Balloons
     lateinit var gv:GameView
     lateinit var detector:GestureDetector
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
 
         var factory : SAXParserFactory = SAXParserFactory.newInstance()
         var saxParser : SAXParser = factory.newSAXParser()
@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
         gv = GameView(this, balloonsList)
         setContentView(gv)
+        gv.setOnTouchListener(this)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -47,16 +48,29 @@ class MainActivity : AppCompatActivity() {
         return super.onTouchEvent(event)
     }
 
+    override fun onTouch(v: View?, e: MotionEvent?): Boolean {
+        if(e != null){
+            var clicked = balloons.checkClicked(e.getRawX(), e.getRawY())
+            if(!(clicked.getX() == -1f && clicked.getY() == -1f && clicked.getRadius() == 0f)){
+                balloonsList.remove(clicked)
+                Log.w("MainActivity", "Redrawing gameview after clocked")
+                gv.postInvalidate()
+            }
+            Log.w("MainActivity", "Was not clicked, at x " + e.getRawX().toString() + " at y " + e.getRawY().toString())
+        }
+        return true
+    }
+
     inner class TouchHandler : GestureDetector.SimpleOnGestureListener() {
         override fun onSingleTapConfirmed(e: MotionEvent):Boolean{
             if(e != null){
-                var clicked = balloons.checkClicked(e.x, e.y)
+                var clicked = balloons.checkClicked(e.getRawX(), e.getRawY())
                 if(!(clicked.getX() == -1f && clicked.getY() == -1f && clicked.getRadius() == 0f)){
                     balloonsList.remove(clicked)
                     Log.w("MainActivity", "Redrawing gameview after clocked")
                     gv.postInvalidate()
                 }
-                Log.w("MainActivity", "Was not clicked, at x " + e.x.toString() + " at y " + e.y.toString())
+                Log.w("MainActivity", "Was not clicked, at x " + e.getRawX().toString() + " at y " + e.getRawY().toString())
             }
             return true
         }
