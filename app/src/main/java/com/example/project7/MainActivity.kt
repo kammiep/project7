@@ -10,11 +10,13 @@ import javax.xml.parsers.SAXParser
 import javax.xml.parsers.SAXParserFactory
 
 class MainActivity : AppCompatActivity() {
+    var balloonsList : ArrayList<Balloon> = ArrayList<Balloon>()
     lateinit var balloons : Balloons
     lateinit var gv:GameView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         var factory : SAXParserFactory = SAXParserFactory.newInstance()
         var saxParser : SAXParser = factory.newSAXParser()
 
@@ -24,9 +26,10 @@ class MainActivity : AppCompatActivity() {
         // start parsing
         saxParser.parse( iStream, handler )
 
-        balloons = Balloons()
-        gv = GameView(this,balloons.getList())
-        for (i in balloons.getList()) {
+        balloonsList = handler.getBalloons()
+        balloons = Balloons(this)
+        gv = GameView(balloonsList)
+        for (i in balloonsList) {
             Log.w("MainActivity",
                 i.getX().toString() + "; " + i.getY().toString() + "; " + i.getRadius().toString())
         }

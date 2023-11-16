@@ -9,8 +9,8 @@ class Balloons {
     private var bloonsList: ArrayList<Balloon> = ArrayList<Balloon>()
     private var handler : SAXHandler = SAXHandler()
 
-    constructor() {
-        bloonsList = handler.getBalloons()
+    constructor(activity: MainActivity) {
+        bloonsList = activity.balloonsList
 
     }
 
@@ -26,9 +26,5 @@ class Balloons {
             }
         }
         return ans
-    }
-
-    fun getList() : ArrayList<Balloon> {
-        return bloonsList
     }
 }
