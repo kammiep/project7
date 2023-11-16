@@ -21,7 +21,6 @@ class Balloons {
     }
 
     fun checkClicked (x : Float, y : Float) : Balloon {
-        Log.w("Ballons", "In checkClicked with x " + x.toString())
         attempts++
         // subtract offset
         var newY : Float = y - 158f

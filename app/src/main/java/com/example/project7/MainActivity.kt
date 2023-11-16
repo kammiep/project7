@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
     var balloonsList : ArrayList<Balloon> = ArrayList<Balloon>()
     lateinit var balloons : Balloons
     lateinit var gv:GameView
-    lateinit var detector:GestureDetector
+    //lateinit var detector:GestureDetector
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
         var handler : SAXHandler = SAXHandler()
         var iStream : InputStream = resources.openRawResource( R.raw.balloons3 )
 
-        var th : TouchHandler = TouchHandler()
-        detector = GestureDetector(this, th)
+        //var th : TouchHandler = TouchHandler()
+        //detector = GestureDetector(this, th)
 
         // start parsing
         saxParser.parse( iStream, handler )
@@ -53,26 +53,23 @@ class MainActivity : AppCompatActivity(), View.OnTouchListener {
             var clicked = balloons.checkClicked(e.getRawX(), e.getRawY())
             if(!(clicked.getX() == -1f && clicked.getY() == -1f && clicked.getRadius() == 0f)){
                 balloonsList.remove(clicked)
-                Log.w("MainActivity", "Redrawing gameview after clocked")
                 gv.postInvalidate()
             }
-            Log.w("MainActivity", "Was not clicked, at x " + e.getRawX().toString() + " at y " + e.getRawY().toString())
         }
         return true
     }
-
+/*
     inner class TouchHandler : GestureDetector.SimpleOnGestureListener() {
         override fun onSingleTapConfirmed(e: MotionEvent):Boolean{
             if(e != null){
                 var clicked = balloons.checkClicked(e.getRawX(), e.getRawY())
                 if(!(clicked.getX() == -1f && clicked.getY() == -1f && clicked.getRadius() == 0f)){
                     balloonsList.remove(clicked)
-                    Log.w("MainActivity", "Redrawing gameview after clocked")
                     gv.postInvalidate()
                 }
-                Log.w("MainActivity", "Was not clicked, at x " + e.getRawX().toString() + " at y " + e.getRawY().toString())
             }
             return true
         }
     }
+ */
 }
